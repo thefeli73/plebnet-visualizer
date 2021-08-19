@@ -127,32 +127,41 @@ if __name__ == '__main__':
     #plebnet
 
     t0 = time()
+    myCmd = 'docker exec lnd lncli describegraph > ' + ln_path
+    os.system(myCmd)
+    
+    t1 = time()
     if os.path.isfile(megahubs_path):
         with open(megahubs_path, 'r', encoding='utf8') as file:
             data = file.read()
         known_megahubs = set(json.loads(data))
-
-    t1 = time()
+    
+    t2 = time()
+    ln_graph = load_ln()
+    
+    t3 = time()
     search_nodes()
     search_edges()
 
-    t2 = time()
+    t4 = time()
     remove_non_triangles()
 
-    t3 = time()
+    t5 = time()
     save_graph("graph.json", graph)
     save_graph("graph3d.json", graph3d)
     save_graph("graph_full.json", graph_full)
     save_graph("graph3d_full.json", graph3d_full)
     save_graph("neighbours.json", neighbours_dict)
 
-    t4=time()
+    t6=time()
     print("\nPlebnet")
-    print("Fetching known megahubs took: " + str(round(t1 - t0, 2)) + "s")
-    print("Searching nodes took: " + str(round(t2 - t1, 2)) + "s")
-    print("Finding and removing triangles took: " + str(round(t3 - t2, 2)) + "s")
-    print("Saving files took: " + str(round(t4 - t3, 2)) + "s")
-    print("Total: " + str(round(t4 - t0, 2)) + "s")
+    print("Fetching LN graph took: " + str(round(t1 - t0, 2)) + "s")
+    print("Fetching known plebs took: " + str(round(t2 - t1, 2)) + "s")
+    print("Opening LN graph took: " + str(round(t3 - t2, 2)) + "s")
+    print("Searching nodes took: " + str(round(t4 - t3, 2)) + "s")
+    print("Finding and removing triangles took: " + str(round(t5 - t4, 2)) + "s")
+    print("Saving files took: " + str(round(t6 - t5, 2)) + "s")
+    print("Total: " + str(round(t6 - t0, 2)) + "s")
     print("\nNodes: " + str(len(graph["nodes"])))
     print("Channels (triangles): " + str(len(graph["links"])))
     print("Channels: " + str(len(graph_full["links"])))
