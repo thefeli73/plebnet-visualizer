@@ -2,9 +2,9 @@
 Code for the plebnet visualizer at https://plebnet.satoshis.tech/
 
 Assumptions:
-> Linux
-> script run with sudo
-> lnd docker container on same machine called "lnd"
++ Linux
++ script run with sudo
++ lnd docker container on same machine called "lnd"
 
 ## Step 1:
 Run megahub_getknowns.py to collect all the nodes we care about i.e. the plebnet.
