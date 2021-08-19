@@ -1,6 +1,8 @@
 # plebnet-visualizer
 Code for the plebnet visualizer at https://plebnet.satoshis.tech/
 
+**DISCLAIMER:** This is a proxy repo for the visualizer that lives in a private repo along with other projects, meaning this code may be out of date and may not reflect the 'production' code. 
+
 Assumptions:
 + Linux
 + script run with sudo
